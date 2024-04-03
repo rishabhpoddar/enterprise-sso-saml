@@ -2,7 +2,7 @@ import ThirdPartyEmailPassword from "supertokens-auth-react/recipe/thirdpartyema
 import { ThirdPartyEmailPasswordPreBuiltUI } from "supertokens-auth-react/recipe/thirdpartyemailpassword/prebuiltui";
 import Session from "supertokens-auth-react/recipe/session";
 import Multitenancy from "supertokens-auth-react/recipe/multitenancy";
-import { ReactComponent as MicrosoftLogo } from './assets/images/microsoft.svg';
+import MicrosoftLoginButton from "./MicrosoftLoginButton";
 
 export function getApiDomain() {
     const apiPort = process.env.REACT_APP_API_PORT || 3001;
@@ -39,42 +39,7 @@ export const SuperTokensConfig = {
                     name: "",
                     buttonComponent: (props: { name: string }) => {
                         if (props.name === "Microsoft Login") {
-                            return (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}>
-                                    <div style={{
-                                        width: "200px",
-                                        cursor: "pointer",
-                                        border: "1px",
-                                        paddingTop: "5px",
-                                        paddingBottom: "5px",
-                                        borderRadius: "5px",
-                                        borderStyle: "solid",
-                                        flexDirection: "row",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        paddingLeft: "10px",
-                                        paddingRight: "10px",
-                                    }}>
-                                        <MicrosoftLogo style={{
-                                            height: "20px"
-                                        }} />
-                                        <div style={{
-                                            flex: 1,
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                        }}>
-                                            {props.name}
-                                        </div>
-                                    </div>
-                                </div>
-                            );
+                            return <MicrosoftLoginButton />;
                         }
                         return (
                             <div style={{
