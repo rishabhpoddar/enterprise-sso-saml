@@ -6,7 +6,6 @@ import { useSessionContext } from "supertokens-auth-react/recipe/session";
 import * as reactRouterDom from "react-router-dom";
 import React from "react";
 import { ThirdpartyEmailPasswordComponentsOverrideProvider } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
-import { ThirdpartyPasswordlessComponentsOverrideProvider } from "supertokens-auth-react/recipe/thirdpartypasswordless";
 
 type ChangeTenantsButtonProps = {
     setHasSelectedTenantId: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,33 +54,28 @@ export const Auth = () => {
                             </div>
                         );
                     },
+                    ThirdPartySignInAndUpProvidersForm_Override: ({ DefaultComponent, ...props }) => {
+                        return (
+                            <div>
+                                <DefaultComponent {...props} />
+                                <ChangeTenantsButton setHasSelectedTenantId={setHasSelectedTenantId} />
+                            </div>
+                        );
+                    },
                 }}
             >
-                <ThirdpartyPasswordlessComponentsOverrideProvider
-                    components={{
-                        PasswordlessSignInUpFooter_Override: ({ DefaultComponent, ...props }) => {
-                            return (
-                                <div>
-                                    <DefaultComponent {...props} />
-                                    <ChangeTenantsButton setHasSelectedTenantId={setHasSelectedTenantId} />
-                                </div>
-                            );
-                        },
-                    }}
-                >
-                    <div className="App app-container">
-                        <div className="fill">
-                            <Routes>
-                                {/* This shows the login UI on "/auth" route */}
-                                {getSuperTokensRoutesForReactRouterDom(
-                                    require("react-router-dom"),
-                                    PreBuiltUIList,
-                                    "/auth"
-                                )}
-                            </Routes>
-                        </div>
+                <div className="App app-container">
+                    <div className="fill">
+                        <Routes>
+                            {/* This shows the login UI on "/auth" route */}
+                            {getSuperTokensRoutesForReactRouterDom(
+                                require("react-router-dom"),
+                                PreBuiltUIList,
+                                "/auth"
+                            )}
+                        </Routes>
                     </div>
-                </ThirdpartyPasswordlessComponentsOverrideProvider>
+                </div>
             </ThirdpartyEmailPasswordComponentsOverrideProvider>
         );
     } else {

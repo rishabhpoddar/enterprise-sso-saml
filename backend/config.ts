@@ -1,5 +1,4 @@
 import ThirdPartyEmailPassword from "supertokens-node/recipe/thirdpartyemailpassword";
-import ThirdPartyPasswordless from "supertokens-node/recipe/thirdpartypasswordless";
 import Session from "supertokens-node/recipe/session";
 import { TypeInput } from "supertokens-node/types";
 import Dashboard from "supertokens-node/recipe/dashboard";
@@ -20,7 +19,8 @@ export function getWebsiteDomain() {
 export const SuperTokensConfig: TypeInput = {
     supertokens: {
         // this is the location of the SuperTokens core.
-        connectionURI: "https://try.supertokens.com",
+        connectionURI: "https://st-dev-63dc2850-f17e-11ee-bbd5-47cbb663b9bc.aws.supertokens.io",
+        apiKey: "SeSccI0VtPYvjX=enl23ekn2wa"
     },
     appInfo: {
         appName: "SuperTokens Demo App",
@@ -31,10 +31,6 @@ export const SuperTokensConfig: TypeInput = {
     // use from SuperTokens. See the full list here: https://supertokens.com/docs/guides
     recipeList: [
         ThirdPartyEmailPassword.init(),
-        ThirdPartyPasswordless.init({
-            contactMethod: "EMAIL",
-            flowType: "USER_INPUT_CODE_AND_MAGIC_LINK",
-        }),
         Session.init(),
         Dashboard.init(),
         UserRoles.init(),
